@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/mgt-address/mgt-address",
+    "pages/mgt-address/address/address",
+    "pages/logistics/logistics-online-order/logistics-online-order",
+    "pages/logistics/logistics",
+    "pages/customer/customer",
+    "pages/order/order",
+    "pages/advertisement/test1",
+    "pages/advertisement/test2",
+    "pages/order/order-detail/order-detail",
+    "pages/mgt-demands/mgt-demands",
+    "pages/income/income",
+    "pages/driver/driver",
+    "pages/driver/driver-online-order/driver-online-order"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "邦邦",
+    "navigationBarTextStyle": "black"
+  },
+  
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "citySelector": {
+         "version": "1.0.1",
+         "provider": "wx63ffb7b7894e99ae"
+     }
+  },
+  "permission": {
+    "scope.userLocation": {
+    "desc": "你的位置信息将用于小程序定位"
+    }
+}
+  
+}
