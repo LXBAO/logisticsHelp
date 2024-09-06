@@ -1,0 +1,85 @@
+server:
+  port : 8082
+  tomcat:
+    uri-encoding: UTF-8
+logging:
+  level:
+    root: debug
+    springboot: trace
+  config: classpath:log4j.xml
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 8 # 最大连接数
+        max-wait: 1ms # 最大阻塞时间
+        max-idle: 4
+        min-idle: 0
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/easy_speck_job?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    hikari:
+      auto-commit: false
+      connection-timeout: 5000
+      maximum-pool-size: 15
+mybatis-plus:
+  typeAliasesPackage: com.example.entity
+  mapper-locations: classpath*:/mapper/*.xml
+  configuration:
+    jdbc-type-for-null: 'null'
+    mapUnderscoreToCamelCase: true
+      # log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl #开启sql日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台 打印sql
+  global-config:
+    db-config:
+      db-column-underline: true
+      # 逻辑删及设置默认值（deleted字段是数据库自定义字段）
+      logic-delete-field: deleted
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+      enable-sql-runner: true
+  servlet:
+    multipart:
+      # 根据实际需求作调整
+      max-file-size: 50MB
+      # 默认最大请求大小为15M，总上传的数据大小
+      max-request-size: 100MB
+file:
+  dir: c:/temp/
+  main:
+    allow-circular-references: true
+
+mybatis-plus-join:
+  #是否打印 mybatis plus join banner 默认true
+  banner: true
+  #全局启用副表逻辑删除(默认true) 关闭后关联查询不会加副表逻辑删除
+  sub-table-logic: true
+  #拦截器MappedStatement缓存(默认true)
+  ms-cache: true
+  #表别名(默认 t)
+  table-alias: t
+  #副表逻辑删除条件的位置，支持where、on默认 where （1.4.4+）
+  logic-del-type: where
+
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: my-producer-group
+
+    #topic
+    topic: anran-topic
+    #sync tag(同步消息tag)
+    sync-tag: syn
+    #async tag(异步消息tag)
+    async-tag: asyn
+    #oneway tag(单向消息tag)
+    oneway-tag: way
+    # 异步消息发送失败重试次数,默认为2
+    retry-times-when-send-async-failed: 2
+    # 消息发送失败重试次数,默认为2
+    retry-times-when-send-failed: 2

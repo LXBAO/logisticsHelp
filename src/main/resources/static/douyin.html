@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html  >
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>抖音爬取</title>
+</head>
+
+<script src="jquery-3.6.0.min.js"></script>
+
+<script>
+
+    function douYin() {
+
+        $.ajax({
+            url:'/douYinExecutor',
+            data: {"key": $("#userIdKey").val()},
+            type:'get',
+            contentType: "application/json",
+            success:function(data){
+                alert(data);//弹窗
+                //TODO ........
+
+            },
+            error:function(data){
+                alert(data);//弹窗
+                //TODO ........
+            }
+        })
+    }
+</script>
+<body>
+
+
+
+<div>
+    <input type="text" id="userIdKey"   placeholder="用户名">用户key
+
+    <input type="button" style="margin-top: -20px"  onclick="douYin()" value="爬取文章">
+</div>
+</body>
+</html>
