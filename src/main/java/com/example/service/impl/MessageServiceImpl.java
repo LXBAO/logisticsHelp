@@ -6,7 +6,7 @@ import com.example.common.Constant;
 import com.example.entity.Message;
 
 import com.example.mapper.MessageMapper;
-import com.example.mq.RocketMQServiceImpl;
+
 import com.example.service.IMessageService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.collections.CollectionUtils;
@@ -31,10 +31,14 @@ import java.util.TimerTask;
 @Service
 public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> implements IMessageService {
 
+
+  private final MessageMapper messageMapper;
+
   @Autowired
-  private MessageMapper messageMapper;
-  @Autowired
-  private RocketMQServiceImpl rocketMQServiceImpl;
+  public MessageServiceImpl(MessageMapper messageMapper){
+    this.messageMapper  = messageMapper;
+
+  }
 
   @Override
   public void saveMessage(Message message) {
@@ -72,7 +76,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> impl
         List<Message> list = getSendMessageList();
         if(CollectionUtils.isNotEmpty(list)){
             updateStatus(Constant.MSG_SENDING);
-            rocketMQServiceImpl.batchMessage( list);
+            //rocketMQServiceImpl.batchMessage( list);
         }
       }
     };

@@ -24,9 +24,12 @@ import java.util.List;
  */
 @Service
 public class AttachmentServiceImpl extends ServiceImpl<AttachmentMapper, Attachment> implements IAttachmentService {
-  @Autowired
-  private AttachmentMapper attachmentMapper;
 
+  private final AttachmentMapper attachmentMapper;
+  @Autowired
+  public AttachmentServiceImpl(AttachmentMapper attachmentMapper){
+    this.attachmentMapper = attachmentMapper;
+  }
   @Override
   public void save(List<AttachmentVO> attachmentVOList, int id,int type) {
     if(CollectionUtils.isNotEmpty(attachmentVOList)){

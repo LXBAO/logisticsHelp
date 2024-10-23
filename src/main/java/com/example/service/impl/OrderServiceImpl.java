@@ -48,16 +48,22 @@ import java.util.Objects;
 public class OrderServiceImpl extends MPJBaseServiceImpl<OrderMapper, Order> implements IOrderService {
 
 
-  @Autowired
-  private OrderMapper orderMapper;
-  @Autowired
-  private IUserService userService;
 
-  @Autowired
-  private IOrderRemarkService orderRemarkService;
+  private final OrderMapper orderMapper;
 
+  private final IUserService userService;
+
+  private final IOrderRemarkService orderRemarkService;
+
+
+  private final IMessageService messageService;
   @Autowired
-  private IMessageService messageService;
+  public OrderServiceImpl(OrderMapper orderMapper,IUserService userService ,IOrderRemarkService orderRemarkService,IMessageService messageService){
+      this.orderMapper= orderMapper;
+      this.userService = userService;
+      this.orderRemarkService = orderRemarkService;
+      this.messageService = messageService;
+  }
 
   @Override
   public Long save(OrderVO orderVO){

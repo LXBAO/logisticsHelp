@@ -34,19 +34,26 @@ import java.math.BigDecimal;
 @Service
 public class UserServiceImpl extends MPJBaseServiceImpl<UserMapper, User> implements IUserService {
 
-  @Autowired
-  private IAttachmentService attachmentService;
-  @Autowired
-  private ITeacherInfoService teacherInfoService;
 
+  private final IAttachmentService attachmentService;
+
+  private final ITeacherInfoService teacherInfoService;
+
+  private final UserMapper userMapper;
 
   @Autowired
-  private UserMapper userMapper;
-  @Autowired
-  private RedisTemplate redisTemplate;
+  public UserServiceImpl(IAttachmentService attachmentService,
+                         ITeacherInfoService teacherInfoService,
+                         UserMapper userMapper){
+    this.attachmentService= attachmentService;
+    this.teacherInfoService = teacherInfoService;
+    this.userMapper=userMapper;
+
+  }
 
   @Override
   public UserVO findUserById(int id, int tenantId) {
+
     User user = userMapper.selectById(id);
     UserVO userVO = new UserVO();
     BeanUtils.copyProperties(user, userVO);

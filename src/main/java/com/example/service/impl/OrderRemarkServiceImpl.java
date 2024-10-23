@@ -23,8 +23,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderRemarkServiceImpl extends ServiceImpl<OrderRemarkMapper, OrderRemark> implements IOrderRemarkService {
 
+  private final OrderRemarkMapper orderRemarkMapper;
+
   @Autowired
-  private OrderRemarkMapper orderRemarkMapper;
+  public OrderRemarkServiceImpl(OrderRemarkMapper orderRemarkMapper){
+    this.orderRemarkMapper= orderRemarkMapper;
+  }
   @Override
   public void save(OrderRemarkVO orderRemarkVO) {
     OrderRemark orderRemark = new OrderRemark();

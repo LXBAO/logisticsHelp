@@ -1,0 +1,16 @@
+names:
+  list: apple,apple2,apple3
+weixin-configs:
+  maps:
+    "MGTOweixin":
+       biz: "MzA4ODAyOTAxNg=="
+       accName: "澳门特区旅游局"
+       offset: 0.9
+
+    "wuhanwenlv":
+       biz: "MzA3NTAwMzUxOA=="
+       accName: "武汉市文化和旅游局"
+       offset: 0.8
+
+
+

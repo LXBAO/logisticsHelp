@@ -25,10 +25,16 @@ import java.util.List;
 @Service
 public class AssessServiceImpl extends ServiceImpl<AssessMapper, Assess> implements IAssessService {
 
+
+  private final AssessMapper assessMapper;
+
+  private final IOrderService orderService;
+
   @Autowired
-  private AssessMapper assessMapper;
-  @Autowired
-  private IOrderService orderService;
+  public AssessServiceImpl(AssessMapper assessMapper,IOrderService orderService){
+      this.assessMapper = assessMapper;
+      this.orderService= orderService;
+  }
   @Override
   public List<Assess> getAssessByTeacherId(int id) {
     QueryWrapper<Assess> updateWrapper = new QueryWrapper<>();
