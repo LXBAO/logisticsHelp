@@ -28,7 +28,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
@@ -38,7 +37,7 @@ import java.lang.reflect.Proxy;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -50,7 +49,7 @@ import java.util.stream.Collectors;
  * @data 2024/4/23 14:57
  */
 public class MainTest {
-    String ss = "111";
+
   static RestTemplate restTemplate = new RestTemplate();
 
   public static void  createEntity(){
@@ -80,40 +79,9 @@ public class MainTest {
       }
     return list;
   }
-        public static void test( Object lock1, Object lock2)    {
-            synchronized (lock1){
-                try{
-                    Thread.sleep(2000);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                synchronized (lock2){
-                    try{
-                        Thread.sleep(2000);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
 
-                }
-            }
-        }
-  public static void main(String [] a) throws  Exception {
-
-    ThreadLocal<String> threadLocal = new ThreadLocal<>();
-    ExecutorService threadPoolTaskExecutor =new ThreadPoolExecutor(4, 2000, 1000, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(8),new ThreadPoolExecutor.CallerRunsPolicy());
-
-Optional<String> optional = Optional.ofNullable(null);
-    System.out.println(optional.orElse("456"));;
-
-
-             
-
-
-
-
-    //threadPoolTaskExecutor.shutdown();
-
-      //消费型 特点：适用于扩展性业务场景，有参数，但是返回值类型是void
+  public static void main(String [] a){
+    //消费型 特点：适用于扩展性业务场景，有参数，但是返回值类型是void
     Map<Integer, Consumer<ProcessCallEvent>> callBackTimeMap = Maps.newHashMapWithExpectedSize(16);
     callBackTimeMap.put(1, ProcessCallEvent::shopping);
     ProcessCallEvent o1 = new OrderService1 ();
@@ -130,6 +98,7 @@ Optional<String> optional = Optional.ofNullable(null);
     // 在需要时才调用 get() 方法创建对象
     ExpensiveObject obj = expensiveObjectSupplier.get();
     System.out.println(obj); // 输出: ExpensiveObject instance
+
 
     //函数型 特点： 既有参数又有返回值
     Function<Integer,String> fun = s -> s+"Str";
@@ -200,15 +169,6 @@ Optional<String> optional = Optional.ofNullable(null);
 
 }
 
-class ThreadPoolTask implements Runnable{
-  ThreadPoolTask(){
-
-  }
-  @Override
-  public void run() {
-
-  }
-}
 class ExpensiveObject {
   public ExpensiveObject() {
     // 假设这个构造函数非常耗时

@@ -1,12 +1,10 @@
-package com.example.service.impl;
+package com.example.service;
 
-import com.example.ICoupon;
-import com.example.service.IGoodsService;
-import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.entity.Assess;
+import com.example.vo.AssessVO;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * <p>
@@ -16,27 +14,11 @@ import java.util.Map;
  * @author lx
  * @date 2024-03-22
  */
-@Service
-public class GoodsServiceImpl implements IGoodsService {
+public interface IGoodsService extends IService<Assess> {
+
+  List<Assess> getAssessByTeacherId(int id);
+
+  void save(AssessVO assessVO)  ;
 
 
-   private DiscountCoupon discountCoupon;
-    private FullReductionCoupon fullReductionCoupon;
-   public GoodsServiceImpl(DiscountCoupon discountCoupon ,FullReductionCoupon fullReductionCoupon){
-       this.discountCoupon = discountCoupon;
-       this.fullReductionCoupon = fullReductionCoupon;
-   }
-
-    @Override
-    public BigDecimal purchase(Long id, Integer type) {
-        //考虑策略模式
-        BigDecimal shoopAmt = new BigDecimal(5000);
-        if(type == 1){
-            return shoopAmt.multiply(new BigDecimal(0.9)).setScale(2,BigDecimal.ROUND_CEILING);
-        }else if( type == 2){
-            return shoopAmt.subtract( new BigDecimal(100)).setScale(2,BigDecimal.ROUND_CEILING);
-        }
-
-        return null;
-    }
 }

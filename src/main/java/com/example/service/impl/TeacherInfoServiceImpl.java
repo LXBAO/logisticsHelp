@@ -20,12 +20,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoMapper, TeacherInfo> implements ITeacherInfoService {
 
-
- private final TeacherInfoMapper teacherInfoMapper;
  @Autowired
- public TeacherInfoServiceImpl(TeacherInfoMapper teacherInfoMapper){
-     this.teacherInfoMapper = teacherInfoMapper;
- }
+ private TeacherInfoMapper teacherInfoMapper;
   @Override
   public void save(int userId,  TeacherInfoVO  teacherInfoVO) {
 
@@ -45,7 +41,7 @@ public class TeacherInfoServiceImpl extends ServiceImpl<TeacherInfoMapper, Teach
 
   @Override
   public  TeacherInfoVO  query(int userId) {
-    QueryWrapper<TeacherInfo> queryWrapper =new QueryWrapper<>();
+    QueryWrapper<TeacherInfo> queryWrapper =new QueryWrapper();
     queryWrapper.select("amt","amt2","amt3","amt4").eq("user_id",userId);
     TeacherInfo teacherInfo = teacherInfoMapper.selectOne(queryWrapper);
     if(teacherInfo !=null){

@@ -1,10 +1,9 @@
 package com.example.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.entity.Assess;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.vo.AssessVO;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -15,10 +14,11 @@ import java.util.List;
  * @author lx
  * @date 2024-03-22
  */
-public interface IGoodsService  {
-     BigDecimal purchase(Long id,Integer type);
+public interface IAssessService extends IService<Assess> {
 
+  List<Assess> getAssessByTeacherId(int id);
 
+  void save(AssessVO assessVO)  ;
 
 
 }
