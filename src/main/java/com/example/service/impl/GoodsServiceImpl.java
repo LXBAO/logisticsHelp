@@ -2,6 +2,8 @@ package com.example.service.impl;
 
 import com.example.ICoupon;
 import com.example.service.IGoodsService;
+import com.example.vo.DiscountCoupon;
+import com.example.vo.FullReductionCoupon;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

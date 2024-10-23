@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.common.SingleResponse;
 import com.example.service.IAssessService;
+import com.example.service.IGoodsService;
 import com.example.vo.AssessVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +18,16 @@ import org.springframework.web.bind.annotation.*;
  * @date 2024-03-22
  */
 @RestController
-@RequestMapping("/assess")
+@RequestMapping("/goods")
 @Slf4j
-public class AssessController {
+public class GoodsController {
 
 @Autowired
-private IAssessService assessService;
+private IGoodsService goodsService;
 
-  @PostMapping("/save")
-  public SingleResponse save(@RequestBody @Validated AssessVO assessVO)   {
-    assessService.save(assessVO);
-    return SingleResponse.buildSuccess();
+  @GetMapping("/purchase/{id}/{type}")
+  public SingleResponse purchase(@PathVariable Long id, @PathVariable Integer type)   {
+
+    return SingleResponse.buildSuccess(goodsService.purchase(id,type));
   }
 }
