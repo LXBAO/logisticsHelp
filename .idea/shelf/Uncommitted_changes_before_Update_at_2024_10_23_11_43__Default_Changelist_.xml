@@ -1,0 +1,16 @@
+<changelist name="Uncommitted_changes_before_Update_at_2024_10_23_11_43_[Default_Changelist]" date="1729655041214" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_10_23_11_43_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2024/10/23 11:43 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="mvnw" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="mvnw.cmd" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".mvn/wrapper/maven-wrapper.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/main/resources/nginx.conf" />
+  </binary>
+</changelist>
